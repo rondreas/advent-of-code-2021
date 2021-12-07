@@ -17,3 +17,23 @@ After reading the instructions I figured this would be neat with python 3.10 new
 With the second problem I realized the first class wasn't maybe the best idea. Couldn't really see a way to reuse much besided the two previous attributes. But still opted for subclassing and overriding the move method from before.
 
 Did a mistake in the code for the second problem at first, doing depth = aim * horizontal_position. Thankfully the docstest pointed out how crazy big the depth value ended up being.
+
+## Day 3
+
+Did a quick tinker on sunday morning, but thought why use Counter from collections when sum(bits) gives the number of ones! Then got caught with what I consider to be one of the worst google-able things in python, getting a string representing binary into actual binary. Thought I could just ^ most common bits with zero and get the right answer but took some experimentation in the interpreter. 
+
+After that I got stuck as the tests seemed OK but the actual result was too small. Noticed the & 0xf didn't work for the actual input and finally managed to get right number of f's for varied length inputs.
+
+Was then stuck for way too long trying to solve the second part. Finally figured my mistake in first attempting to solve it something like...
+<details>
+  <summary>Spoiler Warning</summary>
+  
+  ```python
+  most_common_bits = gamma_rate(data)
+  for i, bit in enumerate(most_common_bits):
+    data = [x for x in data if x[i] == bit]
+    ...
+  ```
+  
+</details>
+
