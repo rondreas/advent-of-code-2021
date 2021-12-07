@@ -55,8 +55,21 @@ def oxygen_generator_rating(data: List[str]) -> int:
 
 
 def co2_generator_rating(data: List[str]) -> int:
-    """ """
-    pass
+    """
+    >>> data = ["00100", "11110", "10110", "10111", "10101", "01111", "00111", "11100", "10000", "11001", "00010", "01010"]
+    >>> co2_generator_rating(data)
+    10
+
+    """
+
+    size = len(data[0])
+    for i in range(size):
+        least_common_bit = epsilon_rate(gamma_rate(data))
+        data = [x for x in data if x[i] == least_common_bit[i]]
+        if len(data) == 1:
+            break
+
+    return int(data.pop(), 2)
 
 
 if __name__ == '__main__':
@@ -70,3 +83,6 @@ if __name__ == '__main__':
     epsilon = epsilon_rate(gamma)
     print(f"Power consumption is: {int(gamma, 2) * int(epsilon, 2)}")
 
+    oxygen_rating = oxygen_generator_rating(data)
+    co2_rating = co2_generator_rating(data)
+    print(f"Life support rating is: {oxygen_rating * co2_rating}")
