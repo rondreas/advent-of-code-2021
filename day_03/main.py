@@ -30,7 +30,8 @@ def epsilon_rate(gamma):
     '01001'
 
     """
-    return bin(~int(gamma, 2) & 0xf).replace("0b", "").zfill(len(gamma))
+    i = int('0x' + 'f' * (len(gamma) // 4), 16)
+    return bin(~int(gamma, 2) & i).replace("0b", "").zfill(len(gamma))
 
 
 if __name__ == '__main__':
@@ -38,7 +39,7 @@ if __name__ == '__main__':
     doctest.testmod()
 
     with open("input", "r") as f:
-        data = list(map(lambda s: s.strip(), f.readlines()))
+        data = f.read().splitlines()
 
     gamma = gamma_rate(data)
     epsilon = epsilon_rate(gamma)
